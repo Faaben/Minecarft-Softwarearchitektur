@@ -1,7 +1,7 @@
 # Minecarft-Softwarearchitektur
 Gruppenarbeit Wirtschaftsinformatiker
 
-# Architektur-Dokumentation (nach arc42)
+# Architektur-Dokumentation
 
 ## 1. Einführung und Ziele
 
