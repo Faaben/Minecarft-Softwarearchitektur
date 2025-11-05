@@ -317,8 +317,8 @@ Das Verteilungsdiagramm sollte den Aufbau etwa so darstellen:
 - Server ↔ Datenhaltung: Speicherung der Weltdateien, Backups, Logs.
 - Server ↔ Modding-System: Zugriff auf Mod-Plugins, Event Hooks, Konfiguration.
 
-### Anwendungsfalldiagramm
-![Verteildiagramm](diagrams/verteilung.png)
+### Verteilungsdiagramm
+![Verteilungsdiagramm](diagrams/verteilung.png)
 
 
 
