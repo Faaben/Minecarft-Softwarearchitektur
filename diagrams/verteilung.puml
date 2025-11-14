@@ -1,47 +1,49 @@
 @startuml verteilung
-title Minecraft – Verteilungsdiagramm (Deployment)
+title Minecraft - Verteilungsdiagramm (Deployment)
 
 left to right direction
 skinparam linetype ortho
 skinparam shadowing false
 
-' Knoten: Client-Umgebung
-node "Client-Gerät" as ClientDevice {
-  node "Desktop (Windows/macOS/Linux)" as Desktop {
-    artifact "Minecraft Client\n(Java Edition)" as ClientJava
-    artifact "Java Runtime (JRE)" as JRE
-    ClientJava -[hidden]-> JRE
-  }
+' Vereinfachte Darstellung (strict UML):
+' - Hardware als node, OS als node, Software als artifact
+' - Nur wesentliche Elemente, keine Laufzeit-Details (JRE/SDK)
 
-  node "Konsole / Mobil" as ConsoleMobile {
-    artifact "Minecraft Client\n(Bedrock Edition)" as ClientBedrock
-    artifact "C++ Runtime /\nPlatform SDK" as CPP
-    ClientBedrock -[hidden]-> CPP
-  }
-
-  node "Minecraft Launcher / Plattform" as Launcher
-}
-
-' Knoten: Server-Umgebung
-node "Server-Host" as ServerHost {
-  node "Minecraft Server" as Server {
-    database "Welt- & Spielerdaten\n(NBT, Chunks)" as Daten
+node "Desktop-PC" as DesktopHW {
+  node "Desktop OS" as DesktopOS {
+    artifact "Minecraft Client (Java)" as ClientJava
+    artifact "Launcher" as Launcher
   }
 }
 
-' Externe Dienste
-cloud "Microsoft Account /\nXbox Live Services" as Xbox
-cloud "Ressourcenserver /\nMarketplace" as Market
-node "Modding-Plattformen\n(Forge, Fabric, Add-ons)" as Modding
+node "Konsole / Mobilgeraet" as MobileHW {
+  node "Plattform-OS" as MobileOS {
+    artifact "Minecraft Client (Bedrock)" as ClientBedrock
+  }
+}
 
-' Verbindungen
-ClientJava --[thickness=2] Server : TCP/IP
-ClientBedrock --[thickness=2] Server : TCP/IP
-Launcher --> ClientJava : Installation / Updates / Start
-ClientJava --> Xbox : Authentifizierung / Multiplayer
-ClientBedrock --> Xbox : Authentifizierung / Multiplayer
-ClientJava --> Market : Inhalte (Skins, Welten, Add-ons)
-Server --> Daten : Persistenz
-Modding --> Server : Plugins / Erweiterungen
+node "Eigenes Server-System" as SelfHostHW {
+  node "Server OS" as SelfHostOS {
+    artifact "Minecraft Server (Java)" as ServerJava
+  }
+}
+
+node "Minecraft Realms (Cloud)" as RealmsHW {
+  node "Managed Service" as RealmsEnv {
+    artifact "Realms-Server (Java/Bedrock)" as RealmsSrv
+  }
+}
+
+node "Xbox Live / Microsoft Account" as Xbox
+artifact "Modding (Forge/Fabric)" as Modding
+
+' Verbindungen (minimal)
+ClientJava --> ServerJava : TCP/IP
+ClientJava --> RealmsSrv : TCP/IP
+ClientBedrock --> RealmsSrv : TCP/IP
+Launcher --> ClientJava : Install/Start
+ClientJava --> Xbox : Anmeldung
+ClientBedrock --> Xbox : Anmeldung
+Modding ..> ServerJava : Plugins
 
 @enduml
