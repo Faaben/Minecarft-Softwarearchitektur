@@ -11,7 +11,9 @@ skinparam shadowing false
 
 node "Desktop-PC" as DesktopHW {
   node "Desktop OS" as DesktopOS {
-    artifact "Minecraft Client (Java)" as ClientJava
+    artifact "Minecraft Client (Java)" as ClientJava {
+      artifact "Integrated Server" as IntegratedSrv
+    }
     artifact "Launcher" as Launcher
   }
 }
@@ -26,11 +28,14 @@ node "Eigenes Server-System" as SelfHostHW {
   node "Server OS" as SelfHostOS {
     artifact "Minecraft Server (Java)" as ServerJava
   }
+  database "World & Player Storage (Filesystem: NBT/Anvil .mca)" as WorldStore
+  database "Plugin-DB (SQLite/MySQL/PostgreSQL)" as PluginDB
 }
 
 node "Minecraft Realms (Cloud)" as RealmsHW {
   node "Managed Service" as RealmsEnv {
     artifact "Realms-Server (Java/Bedrock)" as RealmsSrv
+    database "Managed Storage" as RealmsStorage
   }
 }
 
@@ -45,5 +50,10 @@ Launcher --> ClientJava : Install/Start
 ClientJava --> Xbox : Anmeldung
 ClientBedrock --> Xbox : Anmeldung
 Modding ..> ServerJava : Plugins
+
+' Persistenz/Storage-Verbindungen
+ServerJava --> WorldStore : World/Player-Daten
+ServerJava ..> PluginDB : Plugin-Daten (optional)
+RealmsSrv --> RealmsStorage : Persistenz
 
 @enduml
