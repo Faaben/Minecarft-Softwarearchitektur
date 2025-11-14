@@ -1,0 +1,20 @@
+@startuml
+title Minecraft Launcher – Basis Use Cases
+
+actor Spieler
+actor "Microsoft/Xbox Services" as Xbox
+
+rectangle "Minecraft Launcher" {
+  usecase "Anmelden" as UC1
+  usecase "Version auswählen" as UC2
+  usecase "Spiel starten" as UC3
+  usecase "Updates herunterladen" as UC4
+}
+
+Spieler --> UC1
+Spieler --> UC2
+Spieler --> UC3
+Spieler --> UC4
+
+UC1 --> Xbox : Authentifizierung
+@enduml

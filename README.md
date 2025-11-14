@@ -51,7 +51,8 @@ Dieses Dokument folgt dem arc42-Template. Inhalte sind bewusst knapp gehalten un
 ![Kontextdiagramm - Minecraft-Referenzarchitektur](diagrams/Kontextdiagramm.png)
 
 ### 3.4 Anwendungsfalldiagramm
-![AnwnedungsfÃ¤lle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle.svg)
+![AnwnedungsfÃ¤lle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle1.svg)
+![AnwnedungsfÃ¤lle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle2.svg)
 ---
 
 ## 4. Lösungsstrategie

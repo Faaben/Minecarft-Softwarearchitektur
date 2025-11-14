@@ -1,0 +1,26 @@
+@startuml anwendungsfaelle1
+title Minecraft Client – Basis Use Cases
+
+actor Spieler
+actor "Microsoft/Xbox Services" as Xbox
+actor "Minecraft Server / Realms" as Server
+actor "Minecraft Marketplace" as Marketplace
+
+rectangle "Minecraft Client" {
+  usecase "Anmelden" as UC1
+  usecase "Spielen (Singleplayer)" as UC2
+  usecase "Multiplayer-Spiel beitreten" as UC3
+  usecase "Inhalte laden/kaufen" as UC4
+  usecase "Profil verwalten" as UC5
+}
+
+Spieler --> UC1
+Spieler --> UC2
+Spieler --> UC3
+Spieler --> UC4
+Spieler --> UC5
+
+UC1 --> Xbox : Authentifizierung
+UC3 --> Server : Verbindung
+UC4 --> Marketplace : Daten / Käufe
+@enduml
