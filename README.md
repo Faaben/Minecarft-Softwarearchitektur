@@ -138,7 +138,7 @@ Diese Referenzarchitektur abstrahiert typische Muster von Java Edition, Bedrock 
 
 Das Kontextdiagramm zeigt Clients, Server, Identitätsdienste, Distribution und externe Inhalte im überblick.
 
-![Kontextdiagramm – Minecraft-Referenzarchitektur](diagrams/kontext.svg)
+![Kontextdiagramm – Minecraft-Referenzarchitektur](diagrams/Kontextdiagramm.png)
 
 ### 3.4 Anwendungsfalldiagramm
 Das Anwendungsfalldiagramm stellt zentrale Interaktionen schematisch dar, insbesondere:
