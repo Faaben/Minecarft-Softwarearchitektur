@@ -141,17 +141,8 @@ Das Kontextdiagramm zeigt Clients, Server, Identitätsdienste, Distribution und 
 ![Kontextdiagramm – Minecraft-Referenzarchitektur](diagrams/kontext.svg)
 
 ### 3.4 Anwendungsfalldiagramm
-Das Anwendungsfalldiagramm stellt zentrale Interaktionen schematisch dar, insbesondere:
+Dieses Anwendungsfalldiagramm betrachtet nur die Applikation "Minecraft Client" (Systemgrenze: Client) und zeigt genau einen einzigen Use Case: "Spielsitzung (Survival)". Schritte wie Welt öffnen/erstellen, Bewegen/Interagieren, Bauen, Crafting, Kampf und Inventarverwaltung sind Teil dieses Use Cases und werden nicht als separate Use Cases modelliert. Akteure: Spieler (auslöser) und Microsoft/Xbox Services für Authentifizierung.
 
-- Welt erkunden und baün
-- Ressourcen abbaün und verarbeiten
-- Kämpfen und überleben
-- Mehrspieler-Spiel beitreten / hosten
-- Server administrieren
-- Inhalte und Erweiterungen nutzen (Resource Packs, Datapacks, Mods, Add-ons)
-- In Education-Szenarien Welten bereitstellen, Aufgaben steürn
-
-Die Visualisierung zeigt dabei Spielende, Server-Administratoren und Lehrpersonen als Akteure und ihre jeweiligen Anwendungsfälle im Zusammenspiel mit Client und Server.
 
 ![Anwnedungsfälle – Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle.svg)
 
