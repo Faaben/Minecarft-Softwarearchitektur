@@ -138,7 +138,7 @@ Diese Referenzarchitektur abstrahiert typische Muster von Java Edition, Bedrock 
 
 Das Kontextdiagramm zeigt Clients, Server, Identitätsdienste, Distribution und externe Inhalte im überblick.
 
-![Kontextdiagramm – Minecraft-Referenzarchitektur](diagrams/kontext.svg)
+![Kontextdiagramm – Minecraft-Referenzarchitektur](diagrams/Kontextdiagramm.png)
 
 ### 3.4 Anwendungsfalldiagramm
 Dieses Anwendungsfalldiagramm betrachtet nur die Applikation "Minecraft Client" (Systemgrenze: Client) und zeigt genau einen einzigen Use Case: "Spielsitzung (Survival)". Schritte wie Welt öffnen/erstellen, Bewegen/Interagieren, Bauen, Crafting, Kampf und Inventarverwaltung sind Teil dieses Use Cases und werden nicht als separate Use Cases modelliert. Akteure: Spieler (auslöser) und Microsoft/Xbox Services für Authentifizierung.
