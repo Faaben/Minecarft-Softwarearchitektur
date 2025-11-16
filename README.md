@@ -152,7 +152,8 @@ Damit ist der fachliche Kontext nachvollziehbar abgegrenzt; weniger relevante Na
 | Identitätsdienst (Microsoft Account)        | Verwalten Benutzerkonten und Anmeldungen                                          | Authentifizierungsanfragen, Token-Validierung („Konten & Lizenzen (Anmeldung)“)                 | Identität der Spielenden, Konten- und Lizenzinformationen                                     |
 | Zahlungsdienstleister / Store (Microsoft Commerce) | Abwicklung von Käufen, Abos und Lizenzen                                         | Kauf- und Aboanforderungen, Zahlungsdaten („Zahlungsabwicklung (Käufe, Abos)“)                  | Bestätigte Käufe, Lizenzen/Entitlements, Rechnungsinformationen                               |
 
-**Kontextdiagramm Minecraft-Referenzarchitektur** (Client, Server, Auth-Services, Launcher, Mod-Repos, lokales Dateisystem).
+**Kontextdiagramm Minecraft-Referenzarchitektur** (Client, Server, Auth-Services, Launcher, Mod-Repos, lokales Dateisystem).  
+
 ![Kontextdiagramm - Minecraft-Referenzarchitektur](diagrams/kontext.svg)
 
 
@@ -304,7 +305,7 @@ Realms-Cloud) und deren Verbindungen abgedeckt.
   privat betriebener Server ermöglicht.
 - **Erweiterbarkeit:** Die optionale **Plugin-DB (SQLite/MySQL/PostgreSQL)**
   und das Artefakt **Modding (Forge/Fabric)** ermöglichen Server-Erweiterungen,
-  ohne die Kernanwendung zu verändern.
+  ohne die Kernanwendung zu verändern. 
 
 
 #### Mapping der Bausteine auf die Infrastruktur
