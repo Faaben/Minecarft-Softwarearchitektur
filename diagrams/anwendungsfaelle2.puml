@@ -2,7 +2,7 @@
 title Minecraft Launcher – Basis Use Cases
 
 actor Spieler
-actor "Microsoft/Xbox Services" as Xbox
+actor "Identitätsdienst (Microsoft Account / Xbox Services)" as Xbox
 
 rectangle "Minecraft Launcher" {
   usecase "Anmelden" as UC1
