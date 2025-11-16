@@ -35,7 +35,6 @@ Minecraft ist eine Open-World-Sandbox-Anwendung, in der Benutzer eine virtuelle 
 - Architekturgrundsatz: Durchgängiges Client-Server-Modell mit serverseitiger Autorität.
 - Persistenz: Chunk-basierte Speicherung in binären, strukturierten Formaten (z. B. NBT) für Welt- und Spielerzustände.
 - Netzwerk: Paketbasiertes Protokoll über TCP/IP bzw. etablierte Transportprotokolle.
->>>>>>> 6c69fe303946fd8dbe0523e8f14a5670ee9983da
 
 ### 2.2 Organisatorische Randbedingungen
 - Kontinuierliche Weiterentwicklung bei Schutz bestehender Welten (Abwärtskompatibilität und Migration).
@@ -48,7 +47,7 @@ Minecraft ist eine Open-World-Sandbox-Anwendung, in der Benutzer eine virtuelle 
 ### 3.1 Fachlicher Kontext
 
 Minecraft ermöglicht die Interaktion von Spielenden mit einer prozedural generierten, blockbasierten Spielwelt (Bauen, Sammeln, Kämpfen, Automation) in verschiedenen Modi (Singleplayer, Multiplayer, Realms). Server-Admins konfigurieren Regeln und Welten, Plattformbetreiber stellen Distribution, Authentifizierung und optionale Zusatzdienste bereit.
->>>>>>> 6c69fe303946fd8dbe0523e8f14a5670ee9983da
+
 
 ### 3.2 Technischer Kontext
 Externe Dienste:
@@ -71,7 +70,7 @@ Die Basis-Use-Cases des Minecraft-Clients (Anmelden, Singleplayer spielen, Multi
 
 ![AnwnedungsfÃ¤lle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle1.svg)
 ![AnwnedungsfÃ¤lle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle2.svg)
->>>>>>> 6c69fe303946fd8dbe0523e8f14a5670ee9983da
+
 ---
 
 ## 4. Lösungsstrategie
@@ -116,7 +115,7 @@ Typische Topologien:
 - Clients (Desktop, Konsole, Mobile) ↔ dedizierter Minecraft-Server (Java/Bedrock).
 - Alternativ: Realms als Managed Service in der Cloud.
 - Singleplayer: Integrierter Server läuft lokal im Client-Prozess.
->>>>>>> 6c69fe303946fd8dbe0523e8f14a5670ee9983da
+
 
 ### 7.1 Verteildiagramm
 Siehe **Abbildung 4: Verteilungsdiagramm Minecraft** (Desktop-Client, Bedrock-Client, Realms-Server, eigener Server, Storage und optionale Plugin-Datenbank).
@@ -130,7 +129,6 @@ Siehe **Abbildung 4: Verteilungsdiagramm Minecraft** (Desktop-Client, Bedrock-Cl
 - Sicherheit (Authentifizierung/Autorisierung, Rechte, grundlegende Anti-Cheat-Mechanismen).
 - Erweiterbarkeit (Datapacks/Plugins, Versionierung und Stabilität der APIs).
 - Fehler- und Ressourcenmanagement (Speicher, Threads, IO, Chunk-Loading).
->>>>>>> 6c69fe303946fd8dbe0523e8f14a5670ee9983da
 
 ---
 
@@ -157,7 +155,6 @@ Siehe **Abbildung 4: Verteilungsdiagramm Minecraft** (Desktop-Client, Bedrock-Cl
 ---
 
 ## 12. Glossar
-<<<<<<< HEAD
 
 ### 12.1 Inhalt
 Die wichtigsten fachlichen und technischen Begriffe, die beim Beschreiben der Minecraft-Referenzarchitektur verwendet werden.  
