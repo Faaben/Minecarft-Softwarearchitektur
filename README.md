@@ -43,22 +43,66 @@ Minecraft ist eine Open-World-Sandbox-Anwendung, in der Benutzer eine virtuelle 
 ---
 
 ## 3. Kontextabgrenzung
+Dieses Kapitel beschreibt den Kontext des Systems „Minecraft“ (didaktisches Modell).
+Unter „Minecraft“ verstehen wir hier das **Spielsystem als Blackbox** (Client-/Server-Funktionalität, Login, Lizenz- und Shop-Anbindung).
 
-### 3.1 Fachlicher Kontext
+Die Kontextdiagramme zeigen:
+- fachliche Nachbarn (Rollen und externe Systeme) und die zwischen ihnen ausgetauschten Informationen
+- technische Kanäle, über welche diese Informationen übertragen werden  
+Damit wird klar abgegrenzt, was zum System gehört und **welche Schnittstellen** zu seiner Umgebung existieren.
 
-Minecraft ermöglicht die Interaktion von Spielenden mit einer prozedural generierten, blockbasierten Spielwelt (Bauen, Sammeln, Kämpfen, Automation) in verschiedenen Modi (Singleplayer, Multiplayer, Realms). Server-Admins konfigurieren Regeln und Welten, Plattformbetreiber stellen Distribution, Authentifizierung und optionale Zusatzdienste bereit.
+### 3.1 Fachlicher Kontext (Business Context)
+
+Das fachliche Kontextdiagramm zeigt „Minecraft“ als Blackbox. Rund um das System sind folgende fachliche Kommunikationspartner angeordnet:
+
+- Spielende  
+- Community-Entwickelnde  
+- Server-Administrationen / Hoster  
+- Betrieb / Support (Hersteller)  
+- Identitätsdienst (Microsoft Account)  
+- Zahlungsdienstleister / Store (Microsoft Commerce)  
+
+Die Pfeile im Diagramm benennen die fachlichen Informationsflüsse, zum Beispiel:
+
+- „Spielen, Chatten, Inhalte nutzen“ zwischen Spielenden und Minecraft  
+- „Inhalte bereitstellen (Mods/Datapacks)“ zwischen Community-Entwickelnden und Minecraft  
+- „Mehrspieler verwalten, Moderation/Konfiguration“ zwischen Server-Administrationen/Hostern und Minecraft  
+- „Betrieb, Support, Updates“ zwischen Hersteller und Minecraft  
+- „Konten & Lizenzen (Anmeldung)“ zwischen Minecraft und Identitätsdienst  
+- „Zahlungsabwicklung (Käufe, Abos)“ zwischen Minecraft und Zahlungsdienstleister / Store  
+
+Damit ist der fachliche Kontext nachvollziehbar abgegrenzt; weniger relevante Nachbarsysteme (z. B. Analytics- oder Werbedienste) werden im didaktischen Modell bewusst weggelassen.  
+
+##### Kurzbeschreibung der fachlichen Schnittstellen
+
+| Kommunikationspartner                        | Rolle / Motivation                                                                 | Eingaben an „Minecraft“ (vom Partner zum System)                                                | Ausgaben von „Minecraft“ (vom System zum Partner)                                            |
+|---------------------------------------------|------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
+| Spielende                                   | Nutzen das Spiel, interagieren mit der Welt und anderen Spielenden                | Steuerbefehle, Bewegungen, Interaktionen, Chat-Nachrichten, Auswahl von Inhalten („Spielen, Chatten, Inhalte nutzen“) | Welt- und Spielzustand, Rückmeldungen zu Aktionen, Chat-Nachrichten, verfügbare Inhalte       |
+| Community-Entwickelnde                      | Stellen zusätzliche Inhalte wie Mods und Datapacks bereit                         | Bereitstellung von Inhalten („Inhalte bereitstellen (Mods/Datapacks)“)                          | Schnittstellen und Ladepunkte für diese Inhalte, Status ob Inhalte aktiv/verfügbar sind       |
+| Server-Administrationen / Hoster            | Betreiben und konfigurieren Multiplayer-Server, moderieren das Spiel              | Konfiguration, Start/Stop des Servers, Moderationsaktionen („Mehrspieler verwalten, Moderation/Konfiguration“) | Statusmeldungen, Logs, Rückmeldungen zu Konfigurations- und Moderationsaktionen               |
+| Betrieb / Support (Hersteller)              | Verantwortlich für Betrieb, Support, Fehlerbehebung und Updates                   | Patches/Updates, Supportvorgaben, Betriebsrichtlinien („Betrieb, Support, Updates“)             | Telemetrie- und Fehlerdaten, Log-Informationen, Rückmeldungen zum Update-Status               |
+| Identitätsdienst (Microsoft Account)        | Verwalten Benutzerkonten und Anmeldungen                                          | Authentifizierungsanfragen, Token-Validierung („Konten & Lizenzen (Anmeldung)“)                 | Identität der Spielenden, Konten- und Lizenzinformationen                                     |
+| Zahlungsdienstleister / Store (Microsoft Commerce) | Abwicklung von Käufen, Abos und Lizenzen                                         | Kauf- und Aboanforderungen, Zahlungsdaten („Zahlungsabwicklung (Käufe, Abos)“)                  | Bestätigte Käufe, Lizenzen/Entitlements, Rechnungsinformationen                               |
 
 
-### 3.2 Technischer Kontext
-Externe Dienste:
-- Authentifizierung und Accounts (Microsoft / Xbox Services)
-- Launcher-/Update-/Content-Server
-- Mod- und Plugin-Repositorien
-- Optionale Telemetrie / Analytik
+### 3.2 Technischer Kontext (Technical Context)
+Das technische Kontextdiagramm betrachtet dieselben Kommunikationspartner, legt aber den Fokus auf die technischen Kanäle und Schnittstellen zwischen Minecraft und seiner Umgebung.
 
-Schnittstellen:
-- Ressourcen- und Datapacks (Content-Erweiterungen)
-- Plugin-/Modding-Schnittstellen (Forge/Fabric, Bukkit/Spigot/Paper etc.)
+Aus Sicht der Architektur werden insbesondere folgende technischen Verbindungen unterschieden:
+
+- Spiel-Clients (PC, Konsole, Mobile) verbinden sich über das Internet mittels eines Minecraft-Game-Protokolls (TCP/UDP) mit dem Server.
+- Server-Administrationen greifen über Management-Kanäle wie Remote-Konsole, SSH oder Web-Adminoberflächen auf das System zu.
+- Der Identitätsdienst „Microsoft Account“ wird über HTTPS-basierte Web-APIs angesprochen (Anmeldung, Token-Validierung, Lizenzabfragen).
+- Der Zahlungsdienstleister / Store „Microsoft Commerce“ wird ebenfalls über HTTPS-APIs eingebunden (Zahlungsabwicklung, Entitlement-Abfragen).
+
+##### Kurzbeschreibung der technischen Schnittstellen
+
+| Technischer Kanal / Schnittstelle          | Beteiligte Systeme / Partner                                           | Zweck (zugehörige fachliche Flüsse)                                                          |
+|-------------------------------------------|------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| Game-Protokoll über Internet (TCP/UDP)    | Spiel-Client der Spielenden ↔ Minecraft-Server                         | Übertragung der Spielaktionen und Welt-Updates, Chat-Nachrichten, Mehrspieler-Synchronisation |
+| Admin-/Management-Zugänge (z. B. RCON, SSH, Web-Admin) | Server-Administrationen / Hoster ↔ Minecraft-Server                  | Verwaltung der Server-Konfiguration, Logs, Moderations- und Betriebsaktionen                  |
+| HTTPS-API „Microsoft Account“             | Minecraft-Server ↔ Identitätsdienst (Microsoft Account)                | Anmeldung der Spielenden, Validierung von Konten und Lizenzen („Konten & Lizenzen (Anmeldung)“) |
+| HTTPS-API „Microsoft Commerce“            | Minecraft-Server ↔ Zahlungsdienstleister / Store (Microsoft Commerce)  | Abwicklung von Käufen und Abos, Verwaltung der Entitlements („Zahlungsabwicklung (Käufe, Abos)“) |
 
 ### 3.3 Kontextdiagramm
 Siehe **Abbildung 1: Kontextdiagramm Minecraft-Referenzarchitektur** (Client, Server, Auth-Services, Launcher, Mod-Repos, lokales Dateisystem).
@@ -68,8 +112,8 @@ Siehe **Abbildung 1: Kontextdiagramm Minecraft-Referenzarchitektur** (Client, Se
 ### 3.4 Anwendungsfalldiagramm  
 Die Basis-Use-Cases des Minecraft-Clients (Anmelden, Singleplayer spielen, Multiplayer-Spiel beitreten, Inhalte laden/kaufen, Profil verwalten) sowie des Minecraft-Launchers (Anmelden, Version auswählen, Spiel starten, Updates herunterladen) sind in **Abbildung 2 und 3: Anwendungsfalldiagramme Minecraft** dargestellt.  
 
-![AnwnedungsfÃ¤lle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle1.svg)
-![AnwnedungsfÃ¤lle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle2.svg)
+![Anwnedungsfälle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle1.svg)
+![Anwnedungsfälle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle2.svg)
 
 ---
 
