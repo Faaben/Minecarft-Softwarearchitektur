@@ -48,8 +48,6 @@ Primärer Akteur: Spieler
 | CL-UC4 | Inhalte laden/kaufen        | Der Spieler durchsucht verfügbare Inhalte (zum Beispiel Skins, Texture Packs, Welten) und lädt oder kauft diese über den Minecraft Marketplace. Der Client kommuniziert mit dem Marketplace, lädt die Inhalte herunter und aktiviert sie im Spiel. |
 | CL-UC5 | Profil verwalten            | Der Spieler verwaltet seine Profileinstellungen (zum Beispiel Skin, Steuerungs- und Grafikoptionen, Sprache). Der Client speichert diese Einstellungen und verwendet sie für zukünftige Spielsitzungen. |
 
-Die zugehörigen Basis-Anwendungsfälle sind im Use-Case-Diagramm
-„Minecraft Client – Basis Use Cases“ dargestellt.
 
 ![Anwnedungsfälle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle1.svg)
 
