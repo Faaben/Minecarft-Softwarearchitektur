@@ -175,7 +175,7 @@ Aus Sicht der Architektur werden insbesondere folgende technischen Verbindungen 
 ### 3.3 Kontextdiagramm
 Siehe **Abbildung 1: Kontextdiagramm Minecraft-Referenzarchitektur** (Client, Server, Auth-Services, Launcher, Mod-Repos, lokales Dateisystem).
 
-![Kontextdiagramm - Minecraft-Referenzarchitektur](diagrams/Kontextdiagramm.png)
+![Kontextdiagramm - Minecraft-Referenzarchitektur](diagrams/kontext.svg)
 
 
 
