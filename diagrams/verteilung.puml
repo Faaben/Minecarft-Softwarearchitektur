@@ -15,6 +15,7 @@ node "Desktop-PC" as DesktopHW {
       artifact "Integrated Server" as IntegratedSrv
     }
     artifact "Launcher" as Launcher
+    artifact "Modding-Plattform (Forge/Fabric)" as Modding
   }
 }
 
@@ -39,8 +40,7 @@ node "Minecraft Realms (Cloud)" as RealmsHW {
   }
 }
 
-node "Xbox Live / Microsoft Account" as Xbox
-artifact "Modding (Forge/Fabric)" as Modding
+node "Identitaetsdienst (Microsoft Account)" as Xbox
 
 ' Verbindungen (minimal)
 ClientJava --> ServerJava : TCP/IP
@@ -49,7 +49,7 @@ ClientBedrock --> RealmsSrv : TCP/IP
 Launcher --> ClientJava : Install/Start
 ClientJava --> Xbox : Anmeldung
 ClientBedrock --> Xbox : Anmeldung
-Modding ..> ServerJava : Plugins
+Modding ..> ServerJava : Plugins (Deployment)
 
 ' Persistenz/Storage-Verbindungen
 ServerJava --> WorldStore : World/Player-Daten

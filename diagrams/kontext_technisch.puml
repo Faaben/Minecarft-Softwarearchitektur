@@ -1,0 +1,38 @@
+@startuml technischer_kontext
+title Minecraft - Technischer Kontext
+
+skinparam componentStyle rectangle
+skinparam linetype ortho
+skinparam shadowing false
+left to right direction
+
+' System of Interest als Blackbox
+rectangle "Minecraft-Spielsystem\n(Launcher, Client, Server/Realms)" as Minecraft
+
+' Technische Nachbarsysteme
+node "Endgeraete\n(Desktop, Konsole, Mobilgeraet)" as Clients
+node "Eigenes Server-System\n(Hardware/OS)" as SelfHostHW
+node "Minecraft Realms (Cloud)" as RealmsHW
+node "Identitaetsdienst\n(Microsoft Account)" as Identity
+node "Zahlungsdienstleister / Store\n(Microsoft Commerce)" as Commerce
+database "World & Player Storage\n(Filesystem: NBT/Anvil .mca)" as WorldStore
+database "Plugin-DB\n(SQLite/MySQL/PostgreSQL)" as PluginDB
+database "Managed Storage\n(Realms-Cloud)" as RealmsStorage
+node "Modding-Plattform\n(Forge/Fabric)" as ModdingEnv
+
+' Technische Kanaele / Protokolle
+Clients --> Minecraft : TCP/IP\n(Minecraft-Game-Protokoll)
+Minecraft --> Identity : HTTPS\n(Auth / Token)
+Minecraft --> Commerce : HTTPS\n(Kaeufe / Abos)
+
+Minecraft --> SelfHostHW : Deployment\nMinecraft Server (Java)
+Minecraft --> RealmsHW : Deployment\nRealms-Server (Java/Bedrock)
+
+Minecraft --> WorldStore : Filesystem\nWorld/Player-Daten
+Minecraft --> PluginDB : DB-Zugriff\nPlugin-Daten
+Minecraft --> RealmsStorage : Persistenz\nRealms-Daten
+
+ModdingEnv --> Minecraft : Plugins/Mods\nDeployment
+
+@enduml
+
