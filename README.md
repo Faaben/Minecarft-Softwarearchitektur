@@ -219,15 +219,85 @@ Hauptbausteine:
 ---
 
 ## 7. Verteilungssicht
+Die Verteilungssicht beschreibt die technische Infrastruktur, auf der das Minecraft-System
+(im didaktischen Modell) ausgeführt wird, sowie die Zuordnung der wichtigsten
+Softwareartefakte zu diesen Infrastrukturknoten.
+
 Typische Topologien:
-- Clients (Desktop, Konsole, Mobile) ↔ dedizierter Minecraft-Server (Java/Bedrock).
-- Alternativ: Realms als Managed Service in der Cloud.
-- Singleplayer: Integrierter Server läuft lokal im Client-Prozess.
+
+- Clients (Desktop-PC, Konsole, Mobilgerät) verbinden sich über TCP/IP mit einem
+  dedizierten Minecraft-Server (Java).
+- Alternativ nutzen Spielende Minecraft Realms als Managed Service in der Cloud
+  (Realms-Server mit verwaltetem Storage).
+- Im Singleplayer läuft ein integrierter Server direkt im Prozess des
+  „Minecraft Client (Java)“ auf dem Desktop-PC.
+
+Das folgende Deployment-Diagramm modelliert diese Infrastruktur auf einem
+abstrakten Level (Infrastruktur Level 1):
+
+![Verteilungssicht (vereinfacht)](diagrams/verteilung.svg)
 
 
 ### 7.1 Verteildiagramm
-Siehe **Abbildung 4: Verteilungsdiagramm Minecraft** (Desktop-Client, Bedrock-Client, Realms-Server, eigener Server, Storage und optionale Plugin-Datenbank).
-![Verteilungssicht (vereinfacht)](diagrams/verteilung.svg)
+### 7.1 Infrastruktur Level 1
+
+#### Motivation
+
+Die dargestellte Infrastruktur spiegelt die realen Einsatzszenarien von Minecraft
+wider:
+
+- **Desktop-PC** mit **Launcher** und **Minecraft Client (Java)** als typische
+  Umgebung für die Java-Edition. Der integrierte Server ermöglicht hier
+  Singleplayer-Welten und kleine lokale Mehrspieler-Szenarien.
+- **Konsole / Mobilgerät** mit **Minecraft Client (Bedrock)** bildet die
+  Bedrock-Edition auf Plattform-OS (z. B. Xbox, PlayStation, Switch, iOS, Android) ab.
+- Ein **Eigenes Server-System** mit **Minecraft Server (Java)** stellt dedizierte
+  Multiplayer-Server bereit, die unabhängig vom Client skalieren und optional
+  Plugins ausführen.
+- **Minecraft Realms (Cloud)** repräsentiert den von Mojang/Microsoft betriebenen
+  Managed Service mit Realms-Servern und verwaltetem Storage.
+- **Xbox Live / Microsoft Account** ist als externer Knoten modelliert und
+  übernimmt Authentifizierung und Kontenverwaltung.
+- **World & Player Storage** sowie **Plugin-DB** und **Managed Storage** bilden die
+  Persistenzschicht für Welt-, Spieler- und Plugin-Daten ab.
+- **Modding (Forge/Fabric)** steht für Entwicklungsumgebungen, die Plugins
+  bereitstellen, die später auf dem **Minecraft Server (Java)** ausgeführt werden.
+
+Damit werden die wichtigsten Ausführungsumgebungen (Clients, eigener Server,
+Realms-Cloud) und deren Verbindungen abgedeckt.
+
+
+#### Quality- und Performance-Merkmale der Infrastruktur
+
+- **Skalierbarkeit:** Durch die Trennung von Clients und dedizierten Servern
+  (Eigenes Server-System, Minecraft Realms (Cloud)) kann die Spielerzahl pro
+  Server instanzabhängig skaliert werden.
+- **Performance:** Netzwerkkommunikation erfolgt über **TCP/IP**, Persistenz
+  von Welt- und Spieler-Daten wird lokal auf dem Server in
+  `World & Player Storage (Filesystem: NBT/Anvil .mca)` gehalten.
+- **Verfügbarkeit:** Realms-Server laufen in einer Cloud-Umgebung mit
+  **Managed Storage**, was eine höhere Verfügbarkeit als ein einzelner,
+  privat betriebener Server ermöglicht.
+- **Erweiterbarkeit:** Die optionale **Plugin-DB (SQLite/MySQL/PostgreSQL)**
+  und das Artefakt **Modding (Forge/Fabric)** ermöglichen Server-Erweiterungen,
+  ohne die Kernanwendung zu verändern.
+
+
+#### Mapping der Bausteine auf die Infrastruktur
+
+| Infrastrukturknoten                               | Enthaltene Softwareartefakte / Bausteine                                       | Bemerkungen |
+|---------------------------------------------------|----------------------------------------------------------------------------------|------------|
+| **Desktop-PC** / **Desktop OS**                   | `Launcher`, `Minecraft Client (Java)`, `Integrated Server`                      | Launcher installiert und startet den Minecraft-Client. Der Integrated Server läuft im gleichen Prozess für Singleplayer. |
+| **Konsole / Mobilgeraet** / **Plattform-OS**      | `Minecraft Client (Bedrock)`                                                    | Bedrock-Client verbindet sich direkt mit Realms oder dedizierten Bedrock-Servern (im Diagramm durch Realms-Server repräsentiert). |
+| **Eigenes Server-System** / **Server OS**         | `Minecraft Server (Java)`, `World & Player Storage (Filesystem: NBT/Anvil .mca)`, `Plugin-DB (SQLite/MySQL/PostgreSQL)` | Dedizierter Java-Server, der Welt- und Spieler-Daten lokal speichert und optional Plugins aus einer Plugin-Datenbank lädt. |
+| **Minecraft Realms (Cloud)** / **Managed Service**| `Realms-Server (Java/Bedrock)`, `Managed Storage`                               | Managed Service betrieben von Mojang/Microsoft; Persistenz wird durch Managed Storage bereitgestellt. |
+| **Xbox Live / Microsoft Account**                 | – (externer Identitätsdienst)                                                   | Dient ausschließlich der Authentifizierung (`Anmeldung`) von Launcher, Java-Client und Bedrock-Client. |
+| **Modding (Forge/Fabric)**                        | – (Artefakte: Mods, Plugins)                                                    | Entwicklungs- und Build-Umgebung; erzeugte Plugins werden über die Verbindung `Plugins` dem `Minecraft Server (Java)` bereitgestellt. |
+
+Die im Mapping verwendeten Bezeichnungen entsprechen den Elementen im
+Verteilungsdiagramm (z. B. `Minecraft Client (Java)`, `Minecraft Server (Java)`,
+`World & Player Storage (Filesystem: NBT/Anvil .mca)`), sodass Diagramm und
+Kurzbeschreibungen konsistent sind.
 
 ---
 
