@@ -29,7 +29,7 @@ Dieses Dokument folgt dem arc42-Template. Inhalte sind bewusst knapp gehalten un
 ### 2.1 Technische Randbedingungen
 - Sprachen/Plattformen: Java (Java Edition), C++ (Bedrock), Desktop/Mobile/Konsole
 - Architekturgrundsatz: durchgängiges Client-Server-Modell, serverseitige Autorität
-- Persistenz: Chunk-basierte Speicherung, binäre, strukturierte Formate (z. B. NBT)
+- Persistenz: Chunk-basierte Speicherung, binäre, strukturierte Formate (z. B. NBT)
 - Netzwerk: paketbasiertes Protokoll auf etablierten Transporten
 
 ### 2.2 Organisatorische Randbedingungen
@@ -41,7 +41,7 @@ Dieses Dokument folgt dem arc42-Template. Inhalte sind bewusst knapp gehalten un
 ## 3. Kontextabgrenzung
 
 ### 3.1 Fachlicher Kontext
-- Interaktion Spielende ↔ Spielwelt (Bauen, Sammeln, Kämpfen, Automation).
+- Interaktion Spielende – Spielwelt (Bauen, Sammeln, Kämpfen, Automation).
 
 ### 3.2 Technischer Kontext
 - Externe Dienste: Authentifizierung/Accounts, Plattform-Distribution, optionale Telemetrie.
@@ -51,8 +51,9 @@ Dieses Dokument folgt dem arc42-Template. Inhalte sind bewusst knapp gehalten un
 ![Kontextdiagramm - Minecraft-Referenzarchitektur](diagrams/Kontextdiagramm.png)
 
 ### 3.4 Anwendungsfalldiagramm
-![AnwnedungsfÃ¤lle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle1.svg)
-![AnwnedungsfÃ¤lle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle2.svg)
+![Anwendungsfälle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle1.svg)
+![Anwendungsfälle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle2.svg)
+
 ---
 
 ## 4. Lösungsstrategie
@@ -79,7 +80,7 @@ Dieses Dokument folgt dem arc42-Template. Inhalte sind bewusst knapp gehalten un
 ---
 
 ## 7. Verteilungssicht
-- Typische Topologie: Clients ↔ dedizierter Server 
+- Typische Topologie: Clients – dedizierter Server 
 
 ### 7.1 Verteildiagramm
 ![Verteilungssicht (vereinfacht)](diagrams/verteilung.svg)
@@ -87,7 +88,7 @@ Dieses Dokument folgt dem arc42-Template. Inhalte sind bewusst knapp gehalten un
 ---
 
 ## 8. Querschnittliche Konzepte
-- Persistenz/Dateiformate (z. B. NBT) und Migration
+- Persistenz/Dateiformate (z. B. NBT) und Migration
 - Konfiguration/Logging/Monitoring
 - Sicherheit (AuthN/Z, Rechte, Anti-Cheat-Grundsätze)
 - Erweiterbarkeit (Datapacks/Plugins, Versionierung von APIs)
@@ -118,8 +119,36 @@ Dieses Dokument folgt dem arc42-Template. Inhalte sind bewusst knapp gehalten un
 ---
 
 ## 12. Glossar
-- Chunk: Abschnitt der Spielwelt zur Strukturierung/Streaming.
-- Tick: fester Verarbeitungsschritt des Servers.
-- NBT: binäres Tag-Format für strukturierte Daten.
-- Datapack/Plugin: Erweiterungsmechanismen für Inhalte/Funktionalität.
+
+### 12.1 Inhalt
+Die wichtigsten fachlichen und technischen Begriffe, die beim Beschreiben der Minecraft-Referenzarchitektur verwendet werden.  
+Das Glossar dient ausserdem als Referenz für Übersetzungen zwischen deutsch- und englischsprachigen Stakeholdern.
+
+### 12.2 Motivation
+Eindeutig definierte Begriffe stellen sicher, dass alle Stakeholder
+
+- ein gemeinsames Verständnis zentraler Konzepte haben.
+- keine mehrdeutigen Synonyme oder Homonyme verwenden.
+
+### 12.3 Form
+
+- Einfache Tabelle mit den Spalten `Begriff` und `Definition`.
+- Zusätzlich eine Spalte `Englischer Begriff` für Übersetzungen.
+
+### 12.4 Begriffe
+
+| Begriff   | Definition                                                                                                   | Englischer Begriff     |
+|----------|--------------------------------------------------------------------------------------------------------------|------------------------|
+| Chunk    | Fester Abschnitt der Spielwelt, der gemeinsam geladen, gespeichert und über das Netz übertragen wird.       | Chunk                  |
+| Tick     | Fester Verarbeitungsschritt des Servers, in dem Spielregeln, Physik und Zustände aktualisiert werden.       | Tick                   |
+| NBT      | Binäres Tag-Format zur strukturierten Speicherung von Weltdaten, Spielerzuständen usw.                      | Named Binary Tag (NBT) |
+| Datapack | Paket mit in Dateien definierten Spielinhalten und Regeln (z. B. Loot-Tabellen, Advancements, Funktionen).  | Data Pack              |
+| Plugin   | Serverseitige Erweiterung, die zusätzliche Logik über definierte Erweiterungspunkte einbindet.              | Plugin                 |
+| Welt     | Gesamtheit aller Chunks, Dimensionen und gespeicherten Zustände eines Spielstands.                          | World                  |
+| Dimension| Logisch getrennte Teilwelt mit eigener Geometrie und eigenen Regeln (z. B. Overworld, Nether).              | Dimension              |
+| Entity   | Dynamisches Objekt in der Welt, z. B. Spieler, Mobs, Projektile oder Item-Stacks.                           | Entity                 |
+| Block    | Kleinstes statisches Bauelement der Spielwelt, z. B. Stein, Erde oder Redstone-Komponente.                  | Block                  |
+| Seed     | Startwert zur deterministischen Generierung einer Welt.                                                     | Seed                   |
+| Server   | Autoritative Instanz, die Weltzustand, Regeln und Persistenz verwaltet.                                     | Server                 |
+| Client   | Spielprogramm der Nutzenden für Rendering, Eingabe und Kommunikation mit dem Server.                        | Client                 |
 
