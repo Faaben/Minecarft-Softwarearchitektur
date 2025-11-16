@@ -1,5 +1,5 @@
 @startuml kontext
-title Minecraft
+title Minecraft – Fachlicher Kontext
 
 skinparam componentStyle rectangle
 skinparam linetype ortho
@@ -13,7 +13,7 @@ actor "Community-Entwickelnde" as Dev
 actor "Betrieb / Support (Hersteller)" as Ops
 
 ' System im Fokus (Black Box)
-rectangle "Minecraft" as System
+rectangle "Minecraft-Spielsystem\n(Launcher, Client, Server/Realms)" as System
 
 ' Externe, fachliche Nachbarsysteme (ohne Technik-Details)
 rectangle "Zahlungsdienstleister / Store\n(Microsoft Commerce)" as Commerce
