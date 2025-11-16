@@ -9,8 +9,50 @@ Dieses Dokument beschreibt in vereinfachter, didaktischer Form die Architektur v
 Minecraft ist eine Open-World-Sandbox-Anwendung, in der Benutzer eine virtuelle Welt aus Blöcken erkunden, gestalten und verändern können. Das System kombiniert Elemente von Simulation, Kreativität, Überleben und Mehrspieler-Interaktion. Minecraft ist in Java (für die Java Edition) bzw. in C++ (für die Bedrock Edition) entwickelt und läuft plattformübergreifend auf Windows, macOS, Linux, Konsolen und Mobilgeräten.  
 
 
-### 1.1 Aufgabenstellung
-- Bereitstellung einer stabilen, performanten und erweiterbaren Spielplattform mit persistenter, chunk-basierter Welt, Einzel- und Mehrspielerbetrieb sowie klaren Erweiterungspunkten.
+### 1.1 Anforderungen – Überblick
+Dieser Abschnitt gibt einen Überblick über die wichtigsten funktionalen Anforderungen
+aus Sicht der Spielenden. Die Anforderungen sind als Basis-Anwendungsfälle des
+Minecraft Launchers und des Minecraft Clients formuliert und decken die typischen
+Aufgaben im Alltag eines Spielers ab.
+
+Die detaillierte Darstellung der Anwendungsfälle erfolgt in den beiden
+Anwendungsfalldiagrammen:
+
+- Minecraft Launcher – Basis Use Cases
+- Minecraft Client – Basis Use Cases
+
+#### 1.1.1 Anwendungsfälle – Minecraft Launcher
+
+System of Interest: Minecraft Launcher  
+Primärer Akteur: Spieler
+
+| ID    | Anwendungsfall          | Kurzbeschreibung |
+|-------|-------------------------|------------------|
+| LA-UC1 | Anmelden               | Der Spieler meldet sich im Launcher mit seinem Microsoft-/Xbox-Konto an. Der Launcher leitet die Authentifizierung an die Microsoft/Xbox Services weiter und erhält ein gültiges Login-Token. |
+| LA-UC2 | Version auswählen      | Der Spieler wählt die gewünschte Minecraft-Version oder Edition (zum Beispiel Java, Bedrock, bestimmte Release- oder Snapshot-Version), die später gestartet werden soll. |
+| LA-UC3 | Spiel starten          | Der Spieler startet aus dem Launcher die ausgewählte Minecraft-Version. Der Launcher übergibt die notwendigen Parameter (Version, Profil, Pfade) an den Minecraft Client und startet diesen. |
+| LA-UC4 | Updates herunterladen  | Der Launcher prüft verfügbare Updates für die installierten Minecraft-Versionen und lädt diese bei Bedarf herunter, sodass der Client auf dem aktuellen Stand bleibt. |
+
+![Anwnedungsfälle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle2.svg)
+
+#### 1.1.2 Anwendungsfälle – Minecraft Client
+
+System of Interest: Minecraft Client  
+Primärer Akteur: Spieler
+
+| ID    | Anwendungsfall               | Kurzbeschreibung |
+|-------|------------------------------|------------------|
+| CL-UC1 | Anmelden                    | Der Spieler meldet sich im Minecraft Client mit seinem Konto an. Der Client verwendet die vom Launcher bzw. von den Microsoft/Xbox Services bereitgestellten Authentifizierungsinformationen oder führt bei Bedarf eine erneute Anmeldung durch. |
+| CL-UC2 | Spielen (Singleplayer)      | Der Spieler erstellt eine neue Einzelspieler-Welt oder lädt eine bestehende Welt. Der Client simuliert die Spielwelt lokal, speichert Fortschritt und ermöglicht Aktionen, Interaktionen und Chat innerhalb dieser Welt. |
+| CL-UC3 | Multiplayer-Spiel beitreten | Der Spieler wählt einen Minecraft-Server oder Realm aus und tritt dem Spiel bei. Der Client baut eine Netzwerkverbindung zum Minecraft Server beziehungsweise zu Realms auf, authentifiziert den Spieler und synchronisiert Weltzustand, Bewegungen und Chat. |
+| CL-UC4 | Inhalte laden/kaufen        | Der Spieler durchsucht verfügbare Inhalte (zum Beispiel Skins, Texture Packs, Welten) und lädt oder kauft diese über den Minecraft Marketplace. Der Client kommuniziert mit dem Marketplace, lädt die Inhalte herunter und aktiviert sie im Spiel. |
+| CL-UC5 | Profil verwalten            | Der Spieler verwaltet seine Profileinstellungen (zum Beispiel Skin, Steuerungs- und Grafikoptionen, Sprache). Der Client speichert diese Einstellungen und verwendet sie für zukünftige Spielsitzungen. |
+
+Die zugehörigen Basis-Anwendungsfälle sind im Use-Case-Diagramm
+„Minecraft Client – Basis Use Cases“ dargestellt.
+
+![Anwnedungsfälle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle1.svg)
+
 
 ### 1.2 Qualitätsziele
 - **Performance und Skalierung:** Stabile Tick-Rate, effizientes Chunk-Streaming auch bei vielen Spielern und Entities.
@@ -109,11 +151,7 @@ Siehe **Abbildung 1: Kontextdiagramm Minecraft-Referenzarchitektur** (Client, Se
 
 ![Kontextdiagramm - Minecraft-Referenzarchitektur](diagrams/Kontextdiagramm.png)
 
-### 3.4 Anwendungsfalldiagramm  
-Die Basis-Use-Cases des Minecraft-Clients (Anmelden, Singleplayer spielen, Multiplayer-Spiel beitreten, Inhalte laden/kaufen, Profil verwalten) sowie des Minecraft-Launchers (Anmelden, Version auswählen, Spiel starten, Updates herunterladen) sind in **Abbildung 2 und 3: Anwendungsfalldiagramme Minecraft** dargestellt.  
 
-![Anwnedungsfälle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle1.svg)
-![Anwnedungsfälle - Minecraft-Referenzarchitektur](diagrams/anwendungsfaelle2.svg)
 
 ---
 
